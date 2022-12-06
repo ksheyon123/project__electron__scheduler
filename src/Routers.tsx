@@ -1,4 +1,6 @@
 import { Routes, Route, RouteProps } from "react-router-dom";
+import { Layout } from "./components";
+import { LoginPage } from "./pages";
 import { PATH } from "src/constants/index";
 
 interface PrivateRouteIProps {
@@ -8,13 +10,12 @@ interface PrivateRouteIProps {
 const PrivateRoute = ({
   isLoggedIn,
   ...rest
-}: RouteProps & PrivateRouteIProps) => {
+}: RouteProps & PrivateRouteIProps): React.ReactElement => {
   return (
     <Route
       {...rest}
     />
   )
-
 }
 
 const Routers = () => {
@@ -25,7 +26,11 @@ const Routers = () => {
       <PrivateRoute
         isLoggedIn={isLoggedIn}
         path={PATH.LOGIN}
-        element={<></>}
+        element={
+          <Layout>
+            <LoginPage />
+          </Layout>
+        }
       />
     </Routes>
   );
